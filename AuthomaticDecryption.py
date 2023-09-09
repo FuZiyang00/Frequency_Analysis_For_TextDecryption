@@ -35,19 +35,11 @@ if __name__ == "__main__":
     # Get the first decryption key from the antecedent analysis 
     first_key = decryption.frequency_key(compare_df)
     print("The first candidate key: {}".format(first_key))
-     
-    # Applying the key to the ciphertext 
-    manual_attempt = decryption.key_application(ciphertext, first_key, alphabet)
-    print(manual_attempt[:500])
 
-    # Manually swapping the 'wrong letters' 
-    manual_attempt = manual_attempt.replace('y', 'P')
-    manual_attempt = manual_attempt.replace('p', 'Y')
-    manual_attempt = manual_attempt.replace('h','I')
-    manual_attempt = manual_attempt.replace('i', 'N')
-    manual_attempt = manual_attempt.replace('n', 'H')
-    manual_attempt = manual_attempt.replace('k', 'V')
-    manual_attempt = manual_attempt.replace('v', 'K')
-    print(manual_attempt[:500].upper())
-
-
+    # Start the Authomatic Decryption 
+    attempts = 50
+    trial_text = cleaned_ciphertext[:100]
+    scoring_parameter = decryption.score_text_bigram(cleaned_corpus) # The standard English corpus bigrams distribution 
+    decryption_key, candidate_plain_text = decryption.brute_forcing(ciphertext, first_key, alphabet, scoring_parameter, attempts) 
+    print("The final candidate key is {} \
+          and the decrypted text is the following\n{}".format(decryption_key, candidate_plain_text))
