@@ -40,6 +40,9 @@ if __name__ == "__main__":
     attempts = 50
     trial_text = cleaned_ciphertext[:100]
     scoring_parameter = decryption.score_text_bigram(cleaned_corpus) # The standard English corpus bigrams distribution 
-    decryption_key, candidate_plain_text = decryption.brute_forcing(ciphertext, first_key, alphabet, scoring_parameter, attempts) 
+    decryption_key, candidate_plain_text = decryption.brute_forcing(ciphertext, 
+                                                                    first_key, alphabet, 
+                                                                    scoring_parameter, attempts) 
+    
     print("The final candidate key is {} \
           and the decrypted text is the following\n{}".format(decryption_key, candidate_plain_text))
