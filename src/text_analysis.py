@@ -1,7 +1,6 @@
-import re, os 
+import re
 from itertools import combinations
-import multiprocessing as mp
-from functools import partial
+
 
 class Text_Analysis:
     def __init__(self, text):
