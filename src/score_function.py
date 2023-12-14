@@ -4,7 +4,7 @@ import math
 class Score_Function:
     def __init__(self, txt):
         self.txt = txt
-        self.n_grams = self.n_grams_dictionary(self.txt)
+        self.n_grams = self.n_grams_dictionary()
 
     @staticmethod
     def letterNGrams(msg, n):

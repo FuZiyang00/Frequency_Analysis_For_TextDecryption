@@ -1,48 +1,43 @@
-from score_function import Score_Function
-from text_analysis import Text_Analysis
+from .score_function import Score_Function
+from .text_analysis import Text_Analysis
 
-class decryption:
 
+class Text_decryption:
     @staticmethod
-    def brute_forcing (txt, plain_text, attempts):
-        # initialize the text analysis class with the encrypted key 
+    def brute_forcing(txt, plain_text, attempts):
         cipher_txt = Text_Analysis(txt)
-        candidate_key = cipher_txt.candidate_key
-
-        # initialize the text analysis class with the plain text
         corpus = Text_Analysis(plain_text)
-        corpus_key = corpus.candidate_key
 
-        # first trial text 
-        trial_1 = cipher_txt.key_application(txt, candidate_key, corpus_key)
-        
-        # get the n-grams dictionary of the plain text 
-        plain_score = Score_Function(plain_text)
-        plain_n_grams = plain_score.n_grams
+        # get the letters frequency of the corpus 
+        corpus_freq = corpus.frequency_dict
+        alphabet = corpus.alphabet 
 
-        # score of the first trial text 
-        init = Score_Function(trial_1)
-        init_score = init.get_key_score(plain_n_grams)
+        # retrieve the first candidate decryption key 
+        best_key = cipher_txt.generate_key_candidate(corpus_freq)
+        # decrypt the text 
+        best_trial = Text_Analysis.key_application(txt, best_key, alphabet)
 
-        best_key = candidate_key
-        best_score = init_score
+        # compute the score of this trial 
+        trial = Score_Function(best_trial)
+        plain = Score_Function(plain_text)
+        plain_text_n_grams = plain.n_grams
+        best_score = trial.get_key_score(plain_text_n_grams)
 
-        # starting to brute force
         for i in range(attempts):
-            key_permutations = [Text_Analysis.key_permutations(best_key)]
-
-            for key in key_permutations:
-                trial = cipher_txt.key_application(txt, key, corpus_key)
-                trial_init = Score_Function(trial)
-                trial_score = trial_init.get_key_score(plain_n_grams)
-
-                if trial_score>best_score:
-                    best_score=trial_score
-                    best_key= key
-                    break
+            print("Attempt number {}".format(i))
+            keys = list(Text_Analysis.key_permutations(best_key))
             
-            print("attempt number {}, new candidate_key: {}".format(i, best_key))
+            # iterarate over the permutations of the first retrieved key 
+            for key in keys:
+                new_trial = Text_Analysis.key_application(txt, key, alphabet)
+                trial = Score_Function(new_trial)
+                score = trial.get_key_score(plain_text_n_grams)
+
+                if score > best_score:
+                    best_score = score 
+                    best_key = key
+                    print("newly found best decryption key: {}".format(best_key))
         
         return best_key
-
+            
 
