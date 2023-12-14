@@ -74,6 +74,7 @@ class Text_decryption:
                         best_key = key
                         best_score = score
                         print("newly found best key: {}".format(best_key))
+                        found_better_key = True
                         break
                 
                 if not found_better_key:
