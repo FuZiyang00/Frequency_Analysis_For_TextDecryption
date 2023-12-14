@@ -1,5 +1,7 @@
-import re
+import re, os 
 from itertools import combinations
+import multiprocessing as mp
+from functools import partial
 
 class Text_Analysis:
     def __init__(self, text):
@@ -27,6 +29,13 @@ class Text_Analysis:
         return ''.join(key for key in sorted_merge_dict)
     
     @staticmethod
+    def key_permutations(s):
+        for i,j in combinations(range(len(s)), 2): #couples of position
+            res = list(s)
+            res[i], res[j] = res[j], res[i]
+            yield ''.join(res)
+    
+    @staticmethod
     def key_application(txt, cipher_key, alphabet):
         # Convert key and plain_text_key to strings
         key = str(cipher_key)
@@ -35,13 +44,6 @@ class Text_Analysis:
         trial_text = txt.translate(str.maketrans(key, alphabet))
         trial_text = trial_text.replace('\n', ' ')
         return trial_text
-    
-    @staticmethod
-    def key_permutations(s):
-        for i,j in combinations(range(len(s)), 2): #couples of position
-            res = list(s)
-            res[i], res[j] = res[j], res[i]
-            yield ''.join(res)
 
     
     

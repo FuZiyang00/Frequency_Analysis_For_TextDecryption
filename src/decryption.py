@@ -16,7 +16,7 @@ class Text_decryption:
         best_key = cipher_txt.generate_key_candidate(corpus_freq)
         print("fist key: {}".format(best_key))
         # decrypt the text 
-        best_trial = Text_Analysis.key_application(txt, best_key, alphabet)
+        best_trial = Text_Analysis.key_application_parallel(txt, best_key, alphabet)
 
         # compute the score of this trial 
         trial = Score_Function(best_trial)
@@ -30,7 +30,7 @@ class Text_decryption:
             
             # iterarate over the permutations of the first retrieved key 
             for key in keys:
-                new_trial = Text_Analysis.key_application(txt, key, alphabet)
+                new_trial = Text_Analysis.key_application_parallel(txt, key, alphabet)
                 trial = Score_Function(new_trial)
                 score = trial.get_key_score(plain_text_n_grams)
 
