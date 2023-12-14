@@ -19,6 +19,7 @@ if __name__ == "__main__":
     end_time_key_app = time.time()
     key_app_duration = end_time_key_app - start_time_key_app
     key_app_minutes, key_app_seconds = divmod(int(key_app_duration), 60)
+    print("best discovered key: {}". format(decryption_key))
     print(f"Key application execution time: {key_app_minutes} minutes and {key_app_seconds} seconds")
 
     with open('best_trial.txt', 'w', encoding='utf-8') as output_file:
