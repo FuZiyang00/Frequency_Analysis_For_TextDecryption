@@ -14,6 +14,7 @@ class Text_decryption:
 
         # retrieve the first candidate decryption key 
         best_key = cipher_txt.generate_key_candidate(corpus_freq)
+        print("fist key: {}".format(best_key))
         # decrypt the text 
         best_trial = Text_Analysis.key_application(txt, best_key, alphabet)
 
@@ -37,6 +38,7 @@ class Text_decryption:
                     best_score = score 
                     best_key = key
                     print("newly found best decryption key: {}".format(best_key))
+                    break
         
         return best_key
             

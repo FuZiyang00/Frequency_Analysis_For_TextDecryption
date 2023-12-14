@@ -12,7 +12,7 @@ if __name__ == "__main__":
     corpus = corpus.lower()
 
     alphabet = "abcdefghijklmnopqrstuvwxyz"
-    decryption_key = Text_decryption.brute_forcing(ciphertext, corpus, 10)
+    decryption_key = Text_decryption.brute_forcing(ciphertext, corpus, 20)
     best_trial = Text_Analysis.key_application(ciphertext, decryption_key, alphabet)
 
     with open('best_trial.txt', 'w', encoding='utf-8') as output_file:

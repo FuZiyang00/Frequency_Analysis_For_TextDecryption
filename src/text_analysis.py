@@ -22,9 +22,9 @@ class Text_Analysis:
         sorted_txt_freq = dict(sorted(self.frequency_dict.items(), key=lambda x: x[1], reverse=True))
         sorted_corpus_freq = dict(sorted(corpus_freq.items(), key=lambda x: x[1], reverse=True))
         merged_dict = {key1: key2 for key1, key2 in zip(sorted_txt_freq, sorted_corpus_freq)}
-        sorted_merge_dict = dict(sorted(merged_dict.items(), key=lambda x: x[1], reverse=True))
+        sorted_merge_dict = dict(sorted(merged_dict.items(), key=lambda x: x[1], reverse=False))
         # Extract the keys as strings
-        return ''.join(key for key, _ in sorted_merge_dict)
+        return ''.join(key for key in sorted_merge_dict)
     
     @staticmethod
     def key_application(txt, cipher_key, alphabet):

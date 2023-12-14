@@ -1,2 +1,5 @@
 # Ignore Python bytecode cache files
 __pycache__/ 
+
+# Ignore csv files
+*.txt
