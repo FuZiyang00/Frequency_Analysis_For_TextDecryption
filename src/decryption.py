@@ -8,7 +8,7 @@ class Text_decryption:
     def process_keys(keys_subset, txt, alphabet, plain_text_n_grams, result_queue, original_score):
         try:
             for key in keys_subset:
-                new_trial = Text_Analysis.key_application(txt, key, alphabet)
+                new_trial = Text_Analysis.key_application(txt, key, alphabet) # applying the candidate key 
                 trial = Score_Function(new_trial)
                 score = trial.get_key_score(plain_text_n_grams)
 
@@ -18,6 +18,7 @@ class Text_decryption:
             print(f"Error in process_keys: {e}")
 
     @staticmethod
+    #wrapper method for process_keys
     def brute_force_worker(keys_subset, txt, alphabet, plain_text_n_grams, result_queue, original_score):
         Text_decryption.process_keys(keys_subset, txt, alphabet, plain_text_n_grams, result_queue, original_score)
 
@@ -26,7 +27,7 @@ class Text_decryption:
         cipher_txt = Text_Analysis(txt)
         corpus = Text_Analysis(plain_text)
 
-        # get the letters frequency of the corpus
+        # get the letters frequency of the plain text
         corpus_freq = corpus.frequency_dict
         alphabet = corpus.alphabet
 
@@ -38,13 +39,14 @@ class Text_decryption:
         best_trial = Text_Analysis.key_application(txt, best_key, alphabet)
 
         # compute the score of this trial
-        trial = Score_Function(best_trial)
-        plain = Score_Function(plain_text)
-        plain_text_n_grams = plain.n_grams
+        trial = Score_Function(best_trial) 
+        plain = Score_Function(plain_text) 
+        plain_text_n_grams = plain.n_grams # ngrams dictionary of the plain text
         best_score = trial.get_key_score(plain_text_n_grams)
 
-        with Manager() as manager:
-            result_queue = manager.Queue()
+        with Manager() as manager: # helps in coordinating and synchronizing access to shared resources
+            result_queue = manager.Queue() # shared queue used for communication between processes
+            # As each process discovers a better key, it puts the key and its corresponding score into the queue
 
             for i in range(attempts):
                 print("Attempt number {}".format(i))
@@ -59,12 +61,17 @@ class Text_decryption:
                     process = Process(target=Text_decryption.brute_force_worker,
                                       args=(key_chunks[j], txt, alphabet, plain_text_n_grams,
                                             result_queue, best_score))
-                    processes.append(process)
-                    process.start()
+                    # target argument specifies the function to be executed in the new process 
 
-                # Wait for all processes to finish
+                    processes.append(process) 
+                    # keeps track of all the processes that have been created. 
+                    # This list is later used when waiting for each process to finish using .join()
+                    
+                    process.start()  # called to initiate the execution of each process
+
+                # ensures that the main program doesn't proceed until all parallel processes have completed their tasks
                 for process in processes:
-                    process.join()
+                    process.join() 
 
                 # Check if any process found a better key
                 found_better_key = False
