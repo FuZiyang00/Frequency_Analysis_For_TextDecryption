@@ -5,7 +5,7 @@
 This project implements a text decryption algorithm using a brute-force approach with multiprocessing in Python. The goal is to decrypt a given ciphertext by trying different keys and scoring the results based on a specified scoring function.
 
 ## Score function 
-$$\[ \text{get\_key\_score}(\text{plain\_text\_n\_grams}) = \sum_{(k, v) \in \text{self.n\_grams}} \left( v \cdot \log(\text{plain\_text\_n\_grams}[k]) \right) \]$$
+$$ sum_{(k, v) \in \text{self.n\_grams}} \left( v \cdot \log(\text{plain\_text\_n\_grams}[k]) \right) \]$$
 
 
 ## Project Structure
