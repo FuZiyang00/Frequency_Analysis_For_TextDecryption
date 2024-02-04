@@ -18,7 +18,7 @@ where:
 - `plai_text_ngrams[k]` represents the frequency of the `k-th` n-gram in the plain text,
 - $E\bigcap D$ represents the intersection of sets
 
-
+If the encrypted text presents a vocabulary similar to the one of a regular English text `log(ngrams frequency)` will result in a higher number, compared to the one of highly "irregular" text. 
 
 ## Project Structure
 ```
