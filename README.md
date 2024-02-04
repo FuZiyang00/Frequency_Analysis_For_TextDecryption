@@ -12,7 +12,7 @@ $$ \text{key score} = \sum_{k \in E \cap D} F(k) \cdot \log(\text{plain text n g
 
 where:
 
-- $$\( E \)$$ is the set of n-grams in the encrypted text,
+- $$E$$ is the set of n-grams in the encrypted text,
 - $$\( D \)$$ is the set of n-grams in the decrypted (plain) text,
 - $$\( F(k) \)$$ is the frequency of n-gram \( k \) in the encrypted text,
 - $$\( \cap \)$$ represents the intersection of sets,
