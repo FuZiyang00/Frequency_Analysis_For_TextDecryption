@@ -15,8 +15,8 @@ where:
 - `E` is the set of n-grams in the encrypted text,
 - `D` is the set of n-grams in the plain text,
 - `F(k)` is the frequency of the `k-th` n-gram in the encrypted text,
-- $E\bigcap D$ represents the intersection of sets,
-- `plai_text_ngrams[k]` represents the frequency of the `k-th` n-gram in the plain text
+- `plai_text_ngrams[k]` represents the frequency of the `k-th` n-gram in the plain text,
+- $E\bigcap D$ represents the intersection of sets
 
 
 
