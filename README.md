@@ -5,7 +5,18 @@
 This project implements a text decryption algorithm using a brute-force approach with multiprocessing in Python. The goal is to decrypt a given ciphertext by trying different keys and scoring the results based on a specified scoring function.
 
 ## Score function 
-$$ \text{get\_key\_score}(\text{plain\_text\_n\_grams}) = \sum_{(k, v) \in \text{self.n\_grams}} \left( v \cdot \log(\text{plain\_text\_n\_grams}[k]) \right) $$
+
+The key score is calculated using the following formula:
+
+$$ \text{key\_score} = \sum_{k \in E \cap D} F(k) \cdot \log(\text{plain\_text\_n\_grams}[k])$$
+
+where:
+- \( E \) is the set of n-grams in the encrypted text,
+- \( D \) is the set of n-grams in the decrypted (plain) text,
+- \( F(k) \) is the frequency of n-gram \( k \) in the encrypted text,
+- \( \cap \) represents the intersection of sets,
+- \( \text{plain\_text\_n\_grams}[k] \) represents the frequency of n-gram \( k \) in the decrypted text,
+- \( \log \) is the natural logarithm.
 
 
 ## Project Structure
