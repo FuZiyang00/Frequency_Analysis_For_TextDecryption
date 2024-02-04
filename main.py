@@ -1,16 +1,24 @@
 from src.decryption import Text_decryption
 from src.text_analysis import Text_Analysis
 import time
+import sys
 
 if __name__ == "__main__": 
+
+    if len(sys.argv) != 3:
+        print("Usage: python main.py ciphertext_file corpus_file")
+        sys.exit(1)
+
+    ciphertext_filename = sys.argv[1]
+    corpus_filename = sys.argv[2]
     
-    # Files reading 
-    c = open('ciphertext.txt','r',encoding='utf-8')
-    ciphertext = c.read() 
-    
-    p = open('corpus-war-and-peace-anna-karienina.txt','r',encoding='utf-8')
-    corpus = p.read()
-    corpus = corpus.lower()
+    # Files reading
+    with open(ciphertext_filename, 'r', encoding='utf-8') as c:
+        ciphertext = c.read()
+
+    with open(corpus_filename, 'r', encoding='utf-8') as p:
+        corpus = p.read()
+        corpus = corpus.lower()
 
     alphabet = "abcdefghijklmnopqrstuvwxyz"
     start_time_key_app = time.time()
