@@ -1,4 +1,4 @@
-![Alt text](https://miro.medium.com/v2/resize:fit:940/1*fzH3WrMSuBUVKH8306Yg-w.png)
+![Alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Skytale.png/640px-Skytale.png)
 
 # Text Decryption Project
 
