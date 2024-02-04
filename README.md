@@ -8,9 +8,10 @@ This project implements a text decryption algorithm using a brute-force approach
 
 The key score is calculated using the following formula:
 
-$$ \text{key\_score} = \sum_{k \in E \cap D} F(k) \cdot \log(\text{plain\_text\_n\_grams}[k])$$
+$$ \text{key core} = \sum_{k \in E \cap D} F(k) \cdot \log(\text{plain text n grams}[k]) $$
 
 where:
+
 - \( E \) is the set of n-grams in the encrypted text,
 - \( D \) is the set of n-grams in the decrypted (plain) text,
 - \( F(k) \) is the frequency of n-gram \( k \) in the encrypted text,
