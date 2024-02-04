@@ -18,7 +18,12 @@ where:
 - `plai_text_ngrams[k]` represents the frequency of the `k-th` n-gram in the plain text,
 - $E\bigcap D$ represents the intersection of sets
 
-If the encrypted text presents a vocabulary similar to the one of a regular English text `log(ngrams frequency)` will result in a higher number, compared to the one of highly "irregular" text. 
+
+The logarithmic scaling is applied to the frequency of n-grams in the plain text. 
+
+This scaling has a crucial role in highlighting differences in vocabulary usage. When the encrypted text exhibits a vocabulary similar to regular English text, the logarithm of n-gram frequency tends to result in a higher numerical value. Conversely, for highly "irregular" text, the logarithmic term is likely to produce a lower value. 
+
+This logarithmic transformation accentuates distinctions in vocabulary patterns, aiding in the identification of a more accurate decryption key.
 
 ## Project Structure
 ```
