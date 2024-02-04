@@ -13,11 +13,11 @@ $$ \text{key score} = \sum_{k \in E \cap D} F(k) \cdot \log(\text{plain text n g
 where:
 
 - `E` is the set of n-grams in the encrypted text,
-- `D` is the set of n-grams in the decrypted (plain) text,
-- `F(k)` is the frequency of the n-gram `k` in the encrypted text,
+- `D` is the set of n-grams in the plain text,
+- `F(k)` is the frequency of the `k-th` n-gram in the encrypted text,
 - $E\bigcap D$ represents the intersection of sets,
-- \( \text{plain\_text\_n\_grams}[k] \) represents the frequency of n-gram \( k \) in the decrypted text,
-- \( \log \) is the natural logarithm.
+- `plai_text_ngrams[k]` represents the frequency of the `k-th` n-gram in the plain text
+
 
 
 ## Project Structure
